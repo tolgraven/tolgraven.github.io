@@ -125,9 +125,9 @@
     padding-top: 0;
   }
   .caption-inset {
-    font-size: 0.55rem;
-    font-size: 55%;
-    /* WHAT IS WRONG YOU PIECE OF GAAAH */ /* FUCKER */
+    /* font-size: 0.65rem; */
+    /* ok whatever no captions on iphone then */
+    visibility: hidden;
   }
 }
 
@@ -567,7 +567,8 @@ pre {
   opacity: 0.09;
   border-radius: 38%;
   border: 0.35em solid var(--bg-1); /* hmm gotta make a bit device-dependent */
-  box-shadow: 5px 5px 7px 2px var(--box-regular-color);
+  /* box-shadow: 5px 5px 7px 2px var(--box-regular-color); */
+  box-shadow: 5px 5px 7px 2px var(--box-regular-color-flip);
 }
 @keyframes fade-in-logo {
   0% {
@@ -591,14 +592,15 @@ pre {
   width: var(--media-width-main);
   height: 0; /* hacky way to size by bg-image height... */
   padding-bottom: calc(var(--media-width-main) * var(--logo-ratio)); /* height ratio of logo */
-  box-shadow: inset 2px 2px 17px 7px var(--box-regular-color-flip);
-  overflow: hidden;
+  box-shadow: inset 2px 2px 12px 7px var(--box-regular-color-flip);
+  /* overflow: hidden; */
 }
 #logo-top {
   position: sticky;
   top:  calc(var(--space) * 5); /* small header and a bit, position for when starts moving off sticky, which is also good fallback when parallax missing... */
   margin-top: calc(1.5 * var(--space));
   animation: fade-in-logo 4s;
+
 }
 #logo-bottom {
   position: absolute;
@@ -766,7 +768,6 @@ video {
   left: 0;
   /* left:  calc(0% - 0.5 * var(--space-sides)); */
   /* left:  calc(0% - 2.0 * var(--space-sides)); */
-  /* width: calc(100% + 1 * var(--space-sides)); */
   /* width: calc(var(--media-width-main) + 4 * var(--space-sides)); */
   /* width: calc(100% + 4 * var(--space-sides)); */
   /* width: calc(100% + 1 * var(--space-sides)); */
@@ -825,10 +826,6 @@ video {
   transform: translateZ(-20px) scale(1.20);
   /* annoying how it clips logo if going heavier hmm */
 }
-/* .parallax-group { */
-/*   height: 50vh; */
-/*   transform-style: preserve-3d; */
-/* } */
 .parallax-bg {
   transform: translateZ(-15px) scale(1.15); /* not actually being translated... 1.1 is the 1:1 scale btw obv but 1.2 looks good in this case */
   transform-style: preserve-3d;
@@ -1130,7 +1127,6 @@ h3::first-letter { /* nice looking fancy. why isnt applying within category?? */
 }
 #categories > ul i {
   font-size: 1.4em;
-  /* background: linear-gradient(-30deg, hsla(0, 40%, 60%, 0.9), hsla(192, 35%, 55%, 0.9)); */
   background: linear-gradient(-30deg, hsla(20, 35%, 70%, 0.80), var(--fg-2));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;

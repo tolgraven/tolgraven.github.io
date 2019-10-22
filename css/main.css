@@ -915,7 +915,8 @@ video {
   text-align: center;
 }
 #intro-end { /* lbp pic "YOU" */
-  height: 60vh;
+  height: 80vh;
+  max-height: 80vw; /* it's 1:1 ergo heit wit' makes sense */
 }
 #interlude-2 {
   z-index: 7;

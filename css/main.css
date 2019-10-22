@@ -71,6 +71,8 @@
     --lum-bg-2: var(--lum-dark-2);
     --box-regular-color-flip: hsla(0, 0%, var(--lum-light-1), var(--opacity-regular));
     --box-faint-color-flip:   hsla(0, 0%, var(--lum-light-1), var(--opacity-faint));
+
+    text-size-adjust: none;
   }
   #logo-top { /* invert then rotate hue to restore blue text */
     filter: invert() hue-rotate(180deg);
@@ -113,6 +115,14 @@
     font-size: 0.85rem;
     --media-width-main: 90%; /* test */
     /* --media-width-main: calc(100vw - 2 * var(--space-edges)); /1* would it be context dependent or just use root 100% i guess uh *1/ */
+
+  }
+  body {
+    text-size-adjust: none;
+    /* text-size-adjust: 100%; */
+    -webkit-text-size-adjust: none;
+    /* -webkit-text-size-adjust: 100%; */
+
   }
 }
 @media screen and (max-width: 400px) {
@@ -124,10 +134,12 @@
   #top-banner {
     padding-top: 0;
   }
-  .caption-inset {
+  .caption-inset  {
     /* font-size: 0.65rem; */
     /* ok whatever no captions on iphone then */
     visibility: hidden;
+    display: none;
+    opacity: 0;
   }
 }
 
@@ -415,25 +427,25 @@ header {
   --height: 3.5;
   height: calc(var(--height) * var(--space-lg));
   top:    calc(-0.5 * var(--height) * var(--space-lg));
-  /* background: linear-gradient(0deg, transparent 0%, var(--bg-2) 50%, transparent 100%); */
-  /* background: linear-gradient(0deg, transparent 10%, */
-  /*     hsl(var(--hue-3), 8%, var(--lum-bg-2)) 50%, */
-  /*     transparent 90%); */
-  /* background: linear-gradient(0deg, transparent 0%, */
-  /*     hsl(var(--hue-3), 8%, var(--lum-bg-2)) 50%, */
-  /*     transparent 100%); */
   background: linear-gradient(0deg,
       hsl(var(--hue-3), 2%, var(--lum-bg-1), 0.0)  0%,
       hsl(var(--hue-3), 8%, var(--lum-bg-2)) 50%,
       hsl(var(--hue-3), 28%, var(--lum-bg-2), 0.0)  100%);
 }
-
 .fade-to-black.between.red {
   background: linear-gradient(0deg, transparent 0%,
       hsl(var(--hue-2), 8%, var(--lum-bg-2)) 50%,
       transparent 90%);
 }
-/* :local-link { */ /*   text-decoration: none; */ /* } */
+.fade-to-black.not-shit {
+  background: linear-gradient(0deg, transparent 0%,
+      hsl(var(--hue-2), 8%, var(--lum-bg-2)) 85%,
+      transparent 100%);
+  --height: 10.0;
+  height: calc(var(--height) * var(--space-lg));
+  top: calc(-1.0 * var(--height));
+}
+
 .nav-link li a {
   color: var(--fg-1);
   /* font-size: 0.8em; */
@@ -1168,5 +1180,10 @@ h3::first-letter { /* nice looking fancy. why isnt applying within category?? */
   .stick-up { /* safari is being way irresponsible drawing img sticky layers.. */
     position: relative;
     top: initial;
+  }
+}
+@media screen and (max-width: 400px) {
+  .caption-inset  {
+    font-size: 0.65rem;
   }
 }

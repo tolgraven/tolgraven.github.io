@@ -1145,3 +1145,17 @@ h3::first-letter { /* nice looking fancy. why isnt applying within category?? */
 .fas {
   color: var(--fg-2);
 }
+/* safari just cannot hack the parallaxin and stickin and all */
+/* _::-webkit-full-page-media, _:future, :root .safari_only { */
+@media not all and (min-resolution:.001dpcm) {
+  .parallax-small { transform: translateZ(-0px) scale(1.00);
+  } .parallax-big { transform: translateZ(-0px) scale(1.00);
+  } .parallax-bg  { transform: translateZ(-0px) scale(1.00);
+  } .parallax-fg  { transform: translateZ(0px)  scale(1.00);
+  }
+
+  .stick-up { /* safari is being way irresponsible drawing img sticky layers.. */
+    position: relative;
+    top: initial;
+  }
+}

@@ -58,7 +58,8 @@
   --lum-bg-1:   var(--lum-light-1);
   --lum-bg-2:   var(--lum-light-2);
 }
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) { */
+ /* { */
   :root { /* OS has requested dark mode */
     --fg-1:     var(--light-1);
     --fg-2:     var(--light-text);
@@ -74,7 +75,7 @@
   #logo-top { /* invert then rotate hue to restore blue text */
     filter: invert() hue-rotate(180deg);
   }
-}
+/* } */
 @media screen and (min-width: 800px) {
   :root {
     --space: 2.0rem;

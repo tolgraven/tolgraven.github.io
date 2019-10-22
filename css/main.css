@@ -1086,10 +1086,11 @@ h3::first-letter { /* nice looking fancy. why isnt applying within category?? */
 #categories > ul {
   /* flex: 1; */
   flex: 0 1 auto; /* flex: 1 0 auto; */
+  margin:         calc(0.5 * var(--space));
   margin-top:     calc(0.5 * var(--space));
   margin-bottom:  calc(0.5 * var(--space));
   padding: calc(0.5 * var(--space-lg));
-  border-radius: 0.5rem;
+  border-radius: 0.15rem;
   min-width: 30%;
   text-align: left;
   font-size: 1.1rem;

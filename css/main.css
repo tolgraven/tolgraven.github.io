@@ -123,7 +123,11 @@
   }
   #top-banner {
     padding-top: 0;
-
+  }
+  .caption-inset {
+    font-size: 0.55rem;
+    font-size: 55%;
+    /* WHAT IS WRONG YOU PIECE OF GAAAH */ /* FUCKER */
   }
 }
 

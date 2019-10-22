@@ -111,14 +111,19 @@
   :root { /* mobile vars */
     --space-sides: var(--space); /* remember -sides based on the smaller num for mobile (since margins are more precious) */
     font-size: 0.85rem;
-    --media-width-main: 100%; /* test */
+    --media-width-main: 90%; /* test */
     /* --media-width-main: calc(100vw - 2 * var(--space-edges)); /1* would it be context dependent or just use root 100% i guess uh *1/ */
   }
 }
 @media screen and (max-width: 400px) {
   :root {
+    font-size: 0.80rem;
     --space-sides: calc(0.5 * var(--space)); /* remember -sides based on the smaller num for mobile (since margins are more precious) */
-    --space-edges: calc(0.5 * var(--space)); /* remember -sides based on the smaller num for mobile (since margins are more precious) */
+    --space-edges: calc(0.25 * var(--space));
+  }
+  #top-banner {
+    padding-top: 0;
+
   }
 }
 
@@ -567,6 +572,10 @@ pre {
     border-radius: 63%;
   } 65% {
     border: 0.35em solid transparent; /* hmm gotta make a bit device-dependent */
+  } 100% {
+    border: 0.35em solid var(--bg-1); /* hmm gotta make a bit device-dependent */
+    opacity: 0.09;
+    filter: invert() hue-rotate(180deg);
   }
 }
 .logo-bg {
@@ -839,11 +848,11 @@ video {
 
 #top-banner {
   opacity: 0.65;
-  z-index: -1;
+  /* z-index: -1; */
   left: 0;
   top: 0;
   width: 100%;
-  object-fit: cover; /* since we're setting max-height we must also ensure zooms instead of stretching */
+  object-fit: cover;
 
   /* position: sticky; */
   /* /1* top: -14rem; /2* keeps from staying so low after *2/ *1/ */

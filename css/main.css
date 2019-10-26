@@ -177,13 +177,11 @@
   #top-banner { /* need a better solution for ensuring doesnt overflow... like a tallet image? */
     padding-top: 0;
   }
-  .caption-inset  {
-    /* font-size: 0.65rem; */
-    /* ok whatever no captions on iphone then */
-    visibility: hidden;
-    display: none;
-    opacity: 0;
-  }
+  /* .caption-inset  { /1* ok whatever no captions on iphone then *1/ */
+  /*   visibility: hidden; */
+  /*   display: none; */
+  /*   opacity: 0; */
+  /* } */
 }
 
 li {
@@ -200,9 +198,9 @@ li {
     transform: scaleY(0.0) scaleX(0.3);
     line-height: 20%;
   }
-  .show-in-menu {
-    display: none;
-  }
+  .show-in-menu { display: none; }
+  #show-menu { display: none; }
+
   #burger-check:checked ~ header menu .show-in-menu {
     display: block;
     font-size: 0.8rem;
@@ -1121,6 +1119,11 @@ footer {
   font-size: 0.8rem;
 
   border-left: var(--line-width) solid; /* connect bottom to main on left side */
+
+  /* try (actual tru sticky) footer */
+  /* causes some silly ios behavior and might just deal with enough layers already... */
+  /* position: sticky; */
+  /* bottom: 0; */
 }
 .footer-content {
   display: flex;

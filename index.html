@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="A fake webpage">
-  <title>tolgrAVen</title>
+  <title>tolgrAVen aint right</title>
   <head>
     <link rel="stylesheet" href="css/main.css" type="text/css" media="screen" title="main stylesheet" charset="utf-8">
     <!-- hope this is ok since css only is for simpler font glyph access -->
@@ -27,8 +27,6 @@
         </a>
         <div class="header-logo-text"> <p>audio</p><p>visual</p> </div>
       </div>
-
-      <!-- <input class="burger-check" id="burger-check" type="checkbox"> -->
 
       <menu>
         <nav>
@@ -55,8 +53,8 @@
     <main class="main-content perspective-top">
       <a name="linktotop"></a>
 
-      <div id="logo-top"    class="logo-tolgraven logo-bg parallax-small"></div>
-      <img src="media/foggy-shit-small.jpg" id="top-banner" class="media media-as-bg" alt="Purple enthusiast"> <!--parallax-bg"> -->
+      <div id="logo-top"    class="logo-tolgraven logo-bg parallax-sm"></div>
+      <img id="top-banner" src="media/foggy-shit-small.jpg" class="media media-as-bg" alt="Purple enthusiast">
 
       <section id="intro">
         <h1 class="h-responsive">Building experiences</h1>
@@ -78,7 +76,7 @@
       <div id="interlude-1" class="section-with-media-bg-wrapper">
         <video class="media media-as-bg" playsinline autoplay loop muted
           src="media/fog-3d-small.mp4"></video> <!-- poster="url-to-placeholder-frame" -->
-        <section class="no-seethrough widescreen-safe center-content">
+        <section class="covering-faded widescreen-safe center-content">
           <h1 class="h-responsive">
             What does that mean?</h1>
         </section>
@@ -91,7 +89,6 @@
       <div id="section-services" class="section-with-media-bg-wrapper stick-up link-anchor">
         <p class="caption-inset">
           neovim</p>
-        <!-- <img src="media/vim-code.jpg" class="media-as-bg fade-3 parallax-small"> -->
         <img src="media/vim-code-small.jpg" class="media-as-bg fade-3 parallax-bg" alt="neovim editor">
         <div id="link-services" class="link-anchor"></div>
         <!-- out of #section-services, #services, #link-services, only #link- gets correct offset... -->
@@ -150,13 +147,11 @@
         </section>
       </div>
 
-      <!-- <div id="interlude-2" class="section-with-media-bg-wrapper stick-up"> -->
       <div id="interlude-2" class="section-with-media-bg-wrapper">
         <video class="media-as-bg" playsinline autoplay loop muted
           src="media/nihil-shoot2.mp4"></video> <!-- poster="url-to-placeholder-frame" -->
-        <section class="no-seethrough widescreen-safe center-content">
-          <h1 class="link-anchor h-responsive">
-            For who?</h1>
+        <section class="covering-faded widescreen-safe center-content">
+          <h1 class="h-responsive">For who?</h1>
         </section>
 
         <p class="caption-inset right">
@@ -164,14 +159,13 @@
      </div>
 
       <div class="section-with-media-bg-wrapper covering stick-up">
-        <img src="media/crowd-lbp.JPG" class="media-as-bg fade-5 parallax-small origin-toptop" alt="Many people">
+        <img src="media/crowd-lbp.JPG" class="media-as-bg fade-5 parallax-sm origin-toptop" alt="Many people">
         <section id="intro-end" class="center-content">
-          <h1 class="h0-responsive">YOU</h1>
+          <h1 class="h0-responsive parallax-bg">YOU</h1>
         </section>
         <p class="caption-inset top">
           Happy people enjoying my hospitality once upon a time.<br>
           You'll have to pay though, I'm broke these days.</p>
-      <div class="fader"><div class="fade-to-black not-shit"></div></div>
       </div>
       <!-- idea: have footer stuff make sporadic appearances. for example here, at bottom of the whitey -->
       <div class="fader"><div class="fade-to-black light-from-below"></div></div>
@@ -253,13 +247,11 @@
         </div>
       </section>
 
-      <div id="interlude-3" class="section-with-media-bg-wrapper">
-        <img class="media media-as-bg" src="media/wide-spot-ctrl-small.jpg" alt="">
-        <section class="no-seethrough">
-          <h1 class="h-responsive link-anchor" id="portfolio">
-            Got no portfolio</h1>
+      <div id="interlude-3" class="section-with-media-bg-wrapper blur-behind">
+        <img class="media media-as-bg fade-3" src="media/collage-strips-small.png" alt="">
+        <section class="">
+          <h1 class="h-responsive">Got no portfolio</h1>
         </section>
-
         <p class="caption-inset right"> Failed</p>
      </div>
 
@@ -271,6 +263,11 @@
           For now, here are some of my work environments.
           Maybe some should be in a gallery type thingy.
           Also remember need to embed a pdf lol. </p></br>
+        <div id="services-gallery">
+          <img class="media image-sm" src="media/mixer-kampala-small.jpg" alt="My old house">
+          <img class="media image-sm" src="media/push-afterglow-small.jpg" alt="My actual first web project">
+        </div>
+      </section>
 
       <section id="" class="covering fullwide">
         <div class="sideways">
@@ -285,16 +282,15 @@
         <!-- <div class="media-container fullwide"> </div> -->
       </section>
 
-        <!-- <div id="logo-bottom" class="logo-tolgraven logo-bg parallax-big"></div> -->
-      </main>
+        <!-- <div id="logo-bottom" class="logo-tolgraven logo-bg parallax-bg"></div> -->
+        <div class="line line-footer"></div>
+    </main>
 
     <footer>
-      <div class="line bottom h"></div>
-
       <div class="footer-content">
 
         <div class="footer-column" id="footer-left">
-          <h3>Made w/ meh</h3>
+          <h3>Made w/ strictly css</h3>
           <p>joen@tolgraven.se</p>
           <p>© 2019</p>
         </div>

@@ -589,7 +589,7 @@ pre {
     border-radius: 63%;
   } 65% {
     border: 0.35em solid transparent; /* hmm gotta make a bit device-dependent */
-  } 100% {
+  } 90%, 100% {
     border: 0.35em solid var(--bg-1); /* hmm gotta make a bit device-dependent */
     opacity: 0.09;
     filter: invert() hue-rotate(180deg);
@@ -606,15 +606,28 @@ pre {
   padding-bottom: calc(var(--media-width-main) * var(--logo-ratio)); /* height ratio of logo */
   box-shadow: inset 2px 2px 12px 7px var(--box-regular-color-flip);
   /* overflow: hidden; */
+
+  animation-play-state: paused;
+  animation: zoom-logo 15s;
 }
+.logo-bg:hover {
+  animation-play-state: running;
+}
+@keyframes zoom-logo {
+  0% {
+  } 100% {
+    width: 100%;
+  }
+}
+
 #logo-top {
   position: sticky;
   top:  calc(var(--space) * 5); /* small header and a bit, position for when starts moving off sticky, which is also good fallback when parallax missing... */
   margin-top: calc(1.5 * var(--space));
-  animation: fade-in-logo 4s;
-
+  animation: fade-in-logo 3.5s;
+  transform: translateZ(-10px) scale(1.10); /* hardcoded, always want enabled */
 }
-#logo-bottom {
+#logo-bottom { /* same as top but (un)inverted and coming from below */
   position: absolute;
   bottom: 0;
   /* bottom:  calc(var(--space) * 4); */
@@ -916,32 +929,29 @@ video {
 }
 
 .perspective-top { /* default perspective for main. */
-  perspective: 100px;
+  perspective: calc(1px * var(--perspective));
   perspective-origin: top; /* starts where i want but then want it going other dir... or maybe going up-away better, more understated... */
 }
-.parallax-small { /* logo... perspective is 100px but prob use vars + calc */
-  transform: translateZ(-8px) scale(1.08);
+.parallax-sm, .parallax-bg, .parallax-fg {
   transform-origin: top;
+  transform-style: preserve-3d;
 }
-.parallax-big { /* logo... perspective is 100px but prob use vars + calc */
-  transform: translateZ(-20px) scale(1.20);
-  /* annoying how it clips logo if going heavier hmm */
+.parallax-sm {
+  transform: translateZ(var(--parallax-sm-px)) scale(var(--parallax-sm-scale));
 }
 .parallax-bg {
-  transform: translateZ(-15px) scale(1.15); /* not actually being translated... 1.1 is the 1:1 scale btw obv but 1.2 looks good in this case */
-  transform-style: preserve-3d;
+  transform: translateZ(var(--parallax-px)) scale(var(--parallax-scale));
   z-index: -1;
-  /* overflow-y: auto; */
-  transform-origin: top;
   /* transform-origin: 50% -150%; */ /* perf on chrome, mac safari, but fucks ios... */
-  /* transform-origin: 50% -100%; */
 }
 .parallax-fg {
-  transform: translateZ(10px) scale(0.90); /* not actually being translated... 1.1 is the 1:1 scale btw obv but 1.2 looks good in this case */
+  transform: translateZ(calc(-1px * var(--parallax-sm))) scale(calc(1 / var(--parallax-sm-scale))); /* not actually being translated... 1.1 is the 1:1 scale btw obv but 1.2 looks good in this case */
   /* transform-style: preserve-3d; */
-  transform-origin: top;
-  /* z-index: -1; */
-  /* overflow-y: auto; */
+}
+.parallax-squeeze {
+  transform-origin: 50% var(--parallax-squeeze-tf); /* obviously... not realistic */
+  transform: translateZ(var(--parallax-squeeze-px)) scale(var(--parallax-squeeze-scale)); /* not actually being translated... 1.1 is the 1:1 scale btw obv but 1.2 looks good in this case */
+  /* transform-style: preserve-3d; */
 }
 .origin-toptop {
   /* transform-origin: 50% -100%; */
@@ -956,17 +966,11 @@ video {
   width: 100%;
   object-fit: cover;
 
-  /* position: sticky; */
-  /* /1* top: -14rem; /2* keeps from staying so low after *2/ *1/ */
-  /* margin-top: -14rem; */
-  /* /1* margin-bottom: -14rem; *1/ */
-  /* /1* min-height: 50vh; *1/ */
-
-  /* height: var(--banner-height); */
-  /* overflow-y: hidden; /1* doesnt actually help, figure something out... also how it sometimes clips before supposed to end? *1/ */
-  /* backdrop-filter: brightness(var(--anim-brightness)); */
-
-  /* animation: top-backdrop 7s ease; */
+  animation: top-backdrop 6s ease infinite;
+  animation-play-state: paused;
+}
+#top-banner:hover {
+  animation-play-state: running;
 }
 @keyframes top-backdrop { /* well this'd be nice but it's CRAZY on the cpu bleh */
   0%, 50% { /* --anim-brightness: 0%; /1* no interpolation like this :/ *1/ */

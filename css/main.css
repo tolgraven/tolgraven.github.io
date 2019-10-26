@@ -435,6 +435,8 @@ nav {
 html {
   height: 100%;
   overflow-x: hidden; /* gotta be on both or doesnt work on iphone hmm */
+  scroll-behavior: smooth; /* makes in-page links scroll to target beautifully in chrome */
+  /* overscroll-behavior-y: none; /1* actually works in chrome, stops from overscroll. BUT makes scrolling and esp sticky jittery it seems? *1/ */
 }
 
 body {

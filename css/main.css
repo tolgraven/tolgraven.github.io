@@ -1137,6 +1137,9 @@ footer {
   font-weight: 900;
   padding-bottom: 0.4rem;
 }
+.footer-column:last-of-type h3 {
+  padding-bottom: 0.0rem;
+}
 .footer-column p {
   font-weight: 100;
 }
@@ -1144,12 +1147,29 @@ footer {
 .footer-icons {
   display: flex;
   flex: 1 2 auto;
+  font-size: var(--space-lg);
   /* width: 100%; */
   /* flex-flow: column-wrap; */
   /* flex-flow: row; */
 }
-.footer-icons a {
+.footer-icons > a {
+  padding: 0.5rem;
+  text-shadow: 0px 0px 0px var(--box-faint-color-flip);
 }
+.footer-icons > a > i {
+  transition: all 0.5s;
+}
+.footer-icons > a:focus, .footer-icons > a:hover {
+  filter: brightness(125%) saturate(75%);
+  background: var(--bg-1);
+  border-radius: 100%;
+  text-shadow: -1px 2px 4px var(--box-regular-color-flip);
+}
+.fa-soundcloud:hover { text-shadow: 2px 2px 1px #ff9533; }
+.fa-twitter:hover {    text-shadow: 2px 2px 1px #1DA1F2; }
+.fa-facebook:hover {   text-shadow: 2px 2px 1px #3b5998; }
+/* .fa-instagram { color: ; } */
+
 .md-icon {
   width:  var(--space-lg);
   height: var(--space-lg);
@@ -1169,21 +1189,20 @@ h3::first-letter { /* nice looking fancy. why isnt applying within category?? */
   flex: 1 4 auto;
 }
 
-#to-top {
+.to-top {
   position: fixed;
-  right: calc(0.5 * var(--space));
-  bottom: var(--space-lg);
+  right:  calc(var(--space-edges) + 0.5 * var(--space));
+  bottom: calc(2 * var(--space-lg));
   color: var(--fg-2);
+  font-size: 1.2rem;
+  z-index: -1;
 }
-#search {
-  position: relative;
-  right: 0;
-  /* margin-right: var(--space-sides); */
-  margin-left: var(--space-sides);
+#to-top {
+  z-index: 100;
 }
-
-#services-gallery {
-  /* margin-bottom: calc(2 * var(--space-lg)); */
+#to-top-bg {
+  /* filter: brightness(150%); */
+  text-shadow: 1px 1px 1.0rem var(--fg-2);
 }
 
 #categories { /* List of services offered */

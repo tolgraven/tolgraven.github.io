@@ -694,10 +694,6 @@ pre {
 }
 #logo-bottom { /* same as top but (un)inverted and coming from below */
   position: absolute;
-  bottom: 0;
-  /* bottom:  calc(var(--space) * 4); */
-  /* margin-bottom: calc(1.5 * var(--space-lg)); */
-  /* same as top but (un)inverted and coming from below */
 }
 .section-bordered { /* already got by default but if need to wrap something else */
   border-top:    var(--line-width) solid; /* so, every other top+bottom? */
@@ -707,36 +703,6 @@ pre {
   border: 0;
 }
 
-/* .section-bg-wrapper { /1* wraps section faded bg image. *1/ */
-/*   position: relative; */
-/*   padding: var(--space-lg) 0; /1* needed as sorta floating around section ignoring margins *1/ */
-/*   overflow-x: hidden; */
-/*   /1* overflow-y: hidden; /2* right. need to actively scroll _this_ el to make para work :/ useless without js then... *2/ *1/ */
-/*   /1* overflow-y: scroll; /2* right. need to actively scroll _this_ el to make para work :/ useless without js then... *2/ *1/ */
-/*   /1* perspective: 100px; /2* makes tfZ work on ::after/child el. BUT no parallax still? lol *2/ *1/ */
-/*   /1* perspective-origin: 0; *1/ */
-/*   /1* height: 50vw; *1/ */
-/* } */
-/* .section-bg-wrapper::after { /1* workaround to set only bg opacity *1/ */
-/*   /1* so, later have mixin for this, cant sep bg url to own class nor through style on el.. *1/ */
-/*   content: ""; */
-/*   background: url("../media/vim-code.jpg"); */
-/*   background-size: 100%; /1* went crazy w/o size, spanning entire page which incidentally looks p cool *1/ /1* but not what I was attempting... but explore *1/ */
-/*   background-repeat: no-repeat; */
-/*   /1* just cant seem to get perspective achieving parallax (tho tfZ works) here even if explit set parent height (which cant be doing anyways since content sizing this is dynamic) */
-/*    * tho ::after can def work np... something else is wrong. maybe if image put tot uncoupled from section div which then acts as a mask? is that a thing? haha *1/ */
-/*   /1* transform: translateZ(-10px) scale(1.2); /2* not actually being translated... 1.1 is the 1:1 scale btw obv but 1.2 looks good in this case *2/ *1/ */
-/*   transform: translateZ(-30px) scale(1.5); /1* not actually being translated... 1.1 is the 1:1 scale btw obv but 1.2 looks good in this case *1/ */
-/*   /1* transform: translateZ(-30px) scale(1.0); /2* not actually being translated... 1.1 is the 1:1 scale btw obv but 1.2 looks good in this case *2/ *1/ */
-/*   transform-style: preserve-3d; */
-/*   transform-origin: 0; */
-
-/*   opacity: 0.19; */
-/*   top: 0; left: 0; bottom: 0; right: 0; */
-/*   position: absolute; */
-/*   z-index: 0; */
-/* } */
-
 
 section { /* one main section (img + header + piece of content) */
   flex: 1 1 auto;
@@ -744,30 +710,30 @@ section { /* one main section (img + header + piece of content) */
   justify-content: center;
   align-items: middle;
   padding:   var(--space-lg) var(--space); /* for padding-less main: */
-  /* border-bottom: calc(0.5 * var(--line-width)) solid; */
-  /* border-top: calc(0.5 * var(--line-width)) solid; */
   border-top: var(--line-width) solid;
 }
 section > h1, .jumbo > h1 {
   text-align: center;
-  margin-bottom: var(--space);
-  margin-top:    var(--space);
+  padding-bottom: var(--space);
+  padding-top:    var(--space);
 }
 .main-content > section:first-of-type { /* top section: no upper border */
   border-top: 0;
-  /* margin-bottom: 0; */
 }
 .main-content > section:last-of-type { /* last section, no bottom border */
   margin-bottom: 0;
-  /* border-bottom: 0; */
 }
 
-.no-seethrough { /* jk */ /* incidentally not easy to type on a proper vim setup */
+.covering { /* just, hide-out earlier stupid stickies. z-index should be a mixin giving layer, or by js parsing past? */
+  z-index: 10;
+  background: var(--gradient-bg-main);
+}
+.covering-faded { /* jk */ /* incidentally not easy to type on a proper vim setup */
   --opacity: 0.80;
-  /* background: hsla(var(--hue),  8%,  var(--lum-bg-2), var(--opacity)); */
-  --color-1: hsla(var(--hue-1),  38%,  var(--lum-bg-1), var(--opacity));
-  --color-2: hsla(var(--hue-2),  36%,  var(--lum-bg-1), var(--opacity));
-  /* background: linear-gradient(-30deg, var(--color-1), var(--fg-2)); */
+  /* --color-1: hsla(var(--hue-1),  38%,  var(--lum-bg-1), var(--opacity)); */
+  /* --color-2: hsla(var(--hue-2),  36%,  var(--lum-bg-1), var(--opacity)); */
+  --color-1: hsla(var(--hue-1),  38%,  var(--lum-bg-1));
+  --color-2: hsla(var(--hue-2),  36%,  var(--lum-bg-1));
   background: linear-gradient(-40deg, var(--color-1), var(--color-2));
   opacity: var(--opacity);
   transition: opacity 0.4s;
@@ -854,11 +820,11 @@ section > h1, .jumbo > h1 {
 
 section h1, article h1 { font-size: 2rem; } /* restore proper h1 from 1.5 bs */
 .h0 { font-size: 2.5rem; }
-.h0-responsive { /* size based on viewport, with sensible min-max */
-  font-size: calc(2.5rem + 8vw);
-}
-.h-responsive { /* size based on viewport, with sensible min-max */
-  font-size: calc(1.5rem + 3vw);
+.h0-responsive { font-size: calc(2.5rem + 8vw); } /* size based on viewport, with sensible min */
+.h-responsive  { font-size: calc(1.5rem + 3vw); }
+@supports(font-size: min(0px)) { /* can additionally set a maximum... */
+  .h0-responsive { font-size: min(6rem,   calc(2.5rem + 8vw)); }
+  .h-responsive {  font-size: min(3.5rem, calc(1.5rem + 3vw)); }
 }
 .buttons {
   display: flex;
@@ -986,6 +952,12 @@ video {
 
 .fade-3 { opacity: 0.30; }
 .fade-5 { opacity: 0.62; }
+.darken-3 { filter: brightness(30%); }
+.darken-5 { filter: brightness(55%); }
+.blur-behind {
+  backdrop-filter: blur(1rem);
+  -webkit-backdrop-filter: blur(1rem);
+}
 
 
 .bg-static-section {
@@ -1050,15 +1022,11 @@ video {
   }
 }
 
-.covering { /* just, hide stupidcrap stickies */
-  z-index: 10;
-  background: var(--gradient-bg-main);
-}
 .stick-up { /* make sticky just below header */
   position: sticky;
   top: var(--header-height);
 }
-#section-services { /* well, cant get parallaxin working without sticky, but surely should be possible? and kinda tricky doing without, here... ugha */
+#section-services {
   z-index: 6;
 }
 #services {
@@ -1073,38 +1041,47 @@ video {
 }
 
 #intro {
-  /* padding-top: 0; */
-  /* position: sticky; */
-  /* top: calc(var(--space) * 2); */
-  /* margin-top: -14rem; */
+  padding-top: 0; /* ensure spacing even and also that dont run out of photo... */
 }
 #intro h1 {
-  /* font-size: 3rem; */
-  margin-top: 0;
+  /* padding-top: 0; */
 }
-#intro label {
-  text-align: center;
+#intro p {
+  padding: 0 var(--space-lg);
 }
+
 #intro-end { /* lbp pic "YOU" */
-  height: 80vh;
-  max-height: 80vw; /* it's 1:1 ergo heit wit' makes sense */
+  height: 90vh;
+  max-height: 90vw; /* it's 1:1 ergo heit wit' makes sense */
+}
+#intro-end > .parallax-bg {
+  transform-origin: 100% -1000%;
 }
 #interlude-2 {
   z-index: 7;
 }
-#interlude-3 {
-  z-index: 21;
-  /* height: 50%; */
-  /* transform: scale(1.2); */
+#interlude-3 { /* portfolio */
+  z-index: 29;
+}
+#portfolio { /* portfolio */
+  z-index: 30;
 }
 section:last-of-type {
-  z-index: 22;
+  z-index: 31;
 }
 
+#about-intro {
+  --height: calc(4 * --var(--space));
+  max-height: var(--height);
+  z-index: 13;
+  position: sticky;
+  top: var(--header-height);
+  transform-origin: 50% -1570%;
+}
 #about-story {
   position: relative;
-  z-index: 12;
-  border-top: 0;
+  z-index: 24;
+  /* border-top: 0; */
 }
 #headshot {
   width: 20%;
@@ -1121,7 +1098,7 @@ section:last-of-type {
 }
 
 #building-tools {
-  z-index: 18;
+  z-index: 29;
 }
 .caption-inset {
   /* margin: calc(var(--space) / 2); */

@@ -35,8 +35,7 @@
           <label for="show-menu" class="menu-toggle"> </label></input>
 
           <ul class="nav-links">
-            <!-- uh im using li and ul backwards lol -->
-            <li><a href="#services" name="Services">SERVICES</a></li>
+            <li><a href="#link-services" name="Services">SERVICES</a></li>
             <li><a href="#about" name="About">STORY</a></li>
             <li><a href="#tools" name="Tools">TOOLS</a></li>
             <li><a href="#portfolio" name="Portfolio">PORTFOLIO</a></li>
@@ -87,12 +86,14 @@
           Stage light visualizer for the browser with some shaders</p>
      </div>
 
-      <!-- <div id="section-services" class="section-with-media-bg-wrapper parallax-group"> -->
-      <div id="section-services" class="section-with-media-bg-wrapper stick-up">
+
+      <div id="section-services" class="section-with-media-bg-wrapper stick-up link-anchor">
         <p class="caption-inset">
           neovim</p>
         <!-- <img src="media/vim-code.jpg" class="media-as-bg fade-3 parallax-small"> -->
         <img src="media/vim-code-small.jpg" class="media-as-bg fade-3 parallax-bg" alt="neovim editor">
+        <div id="link-services" class="link-anchor"></div>
+        <!-- out of #section-services, #services, #link-services, only #link- gets correct offset... -->
 
         <!-- <section id="services" class="link-anchor parallax-bg"> -->
         <section id="services" class="link-anchor">
@@ -187,9 +188,10 @@
 
       <section id="about-story" class="anim-gradient-bg noborder">
 
-      <section id="about-story" class="float-wrapper anim-gradient-bg">
-        <h1 class="link-anchor" id="about">Breaking things down</h1></br>
+        <!-- <h1 id="about" class="link-anchor">Breaking things down</h1></br> -->
+        <h1 id="about" class="link-anchor"></h1>
 
+        <div class="float-wrapper">
           <figure id="headshot" class="float-with-caption left">
             <img class="media image-inset" src="media/Leg-tasteful-small.jpg" alt="Joen">
             <figcaption>Yours truly. Smiling!</figcaption>
@@ -228,13 +230,13 @@
             vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
             no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
           <p>What does it end here or hmm if I keep going what will happen to the fucker on the right? I thought we were yup it's still working'!!</p>
-
+        </div>
       </section>
 
       <div class="fader"><div class="fade-to-black between"></div></div>
 
       <section id="building-tools" class="covering noborder">
-        <h1 class="link-anchor" id="tools">Building tools</h1>
+        <h1 id="tools" class="link-anchor">Building tools</h1>
         <p>What I really want to do: build stuff, then also use that stuff. Preferably with others.</p>
 
         <div class="media-container">
@@ -260,9 +262,9 @@
         <p class="caption-inset right"> Failed</p>
      </div>
 
-      <section class="covering">
-        <!-- <h1 class="link-anchor" id="portfolio">Portfolio<span>*</span></h1> -->
-          One day this will be an actual website for an actual company.
+      <!-- <section class="covering"> -->
+      <section id="portfolio" class="covering link-anchor">
+        <p> One day this will be an actual website for an actual company.
           Was what I thought in reverse to myself a few years ago.<br>
           At that point maybe I'll have my act together.</br>
           For now, here are some of my work environments.
@@ -313,7 +315,8 @@
       </div>
     </footer>
 
-    <a id="to-top" href="#linktotop" name="Up"><i class="fas fa-angle-double-up"></i></a>
+    <a id="to-top" class="to-top" href="#linktotop" name="Up"><i class="fas fa-angle-double-up"></i></a>
+    <div id="to-top-bg" class="to-top"><i class="fas fa-angle-double-up"></i></div>
     <a name="bottom"></a>
 
   </body>

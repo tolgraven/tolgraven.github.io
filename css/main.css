@@ -480,7 +480,6 @@ header {
 .fade-to-black {
   position: absolute;
   width: 100%;
-  /* z-index: 29; */
 }
 .fade-to-black.top {
   top: 0;
@@ -501,13 +500,12 @@ header {
       hsl(var(--hue-2), 8%, var(--lum-bg-2)) 50%,
       transparent 90%);
 }
-.fade-to-black.not-shit {
-  background: linear-gradient(0deg, transparent 0%,
-      hsl(var(--hue-2), 8%, var(--lum-bg-2)) 85%,
-      transparent 100%);
-  --height: 10.0;
-  height: calc(var(--height) * var(--space-lg));
-  top: calc(-1.0 * var(--height));
+.fade-to-black.light-from-below {
+  background: linear-gradient(180deg, transparent 0%,
+      hsl(var(--hue-2), 8%, var(--lum-fg-2)) 120%);
+  --height: 30vh;
+  height: calc(var(--height));
+  bottom: 0;
 }
 
 .nav-link li a {

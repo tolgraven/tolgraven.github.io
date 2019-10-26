@@ -3,36 +3,57 @@
 
 /* wanted to put in own file but wasnt compatible with live reload solution... */
 :root { /* general vars */
-  --space: 1.5rem;
-  --space-lg: 2rem;
-  --space-sides: var(--space-lg); /* inner horizontal margin */
-  --space-edges: var(--space-sides); /* size of outer edges  */
-  --space-top: 2rem; /* top margin above header */
-  /* --media-width-main: 80%; /1* tho actually maybe, just calc from space-sides? *1/ */
-  --media-width-main: calc(100% - 2 * var(--space-lg)); /* would it be context dependent or just use root 100% i guess uh */
-  --banner-height: 600px;
-  --logo-ratio: 0.4060; /* lol, 41.25 actual ratio, 40.6 works on chrome desktop, 40.0 on safari ios... */ /* just use img... */ /* or make logo look like i want in first place - needs higher-res or vector bounce anyways */
-  /* --header-with-menu-height: calc(14 * var(--space)); /1* not truly dynamic bc of annoying sticky *1/ */
-  --header-height: calc(3 * var(--space));
+  /* SIZES */
+  --space:             1.5rem;
+  --space-lg:          2rem;
+  --space-sides:       var(--space-lg); /* inner horizontal margin */
+  --space-edges:       var(--space-sides); /* size of outer edges  */
+  --space-top:         2rem; /* top margin above header */
+  --media-width-main:  calc(100% - 2 * var(--space-lg)); /* would it be context dependent or just use root 100% i guess uh */
+  --banner-height:     600px;
+  --logo-ratio:        0.4060; /* lol, 41.25 actual ratio, 40.6 works on chrome desktop, 40.0 on safari ios... */ /* just use img... */ /* or make logo look like i want in first place - needs higher-res or vector bounce anyways */
+  --header-height:     calc(3 * var(--space));
   --header-with-menu-height: 18rem; /* not truly dynamic bc of annoying sticky */
-  /* --header-with-menu-height: 18em; /1* not truly dynamic bc of annoying sticky *1/ */
-  /* --menu-width: 60%; */
+  /* --link-offset:       calc(var(--space) + var(--header-with-menu-height)); */
+  --link-offset:       calc( var(--header-with-menu-height));
   --menu-width-fraction: 0.75;
 
-  --line-width: 2px; /* main design line/border width */ /* 0.125 normally 2px but nah ends up weird when font scales to like 1.67 and shize */
-  --scale: 1.0; /* px line-width drifts when font scales so must compensate... better way? */
+  --line-width:        2px; /* main design line/border width */ /* 0.125 normally 2px but nah ends up weird when font scales to like 1.67 and shize */
+  --scale:             1.0; /* px line-width drifts when font scales so must compensate... better way? */
+  
+  --fiddle-multiplier: 3; /* works with line-width and header pixel dispair chrome+safari desktop. 2 would be the assumed correct tho... */
+  --left-marker: calc(100% * ((1.0 - var(--menu-width-fraction)) / 2)
+                + var(--space) - (var(--fiddle-multiplier) * var(--line-width)));
+  --right-marker: calc(100% - var(--left-marker) + var(--line-width)); /* makes sense right side needs one more unit since it has the right border... */
+  --top-to-menu-height: calc(2 * var(--space-top) + 2em - (4 - var(--fiddle-multiplier)) * var(--line-width));
+  --header-expand-time:  0.5s;
 
-  --hue-1: 180;
-  --hue-2:   8;
-  --hue-3: 192;
-  --lum-dark-1:    9%;
-  --lum-dark-2:   12%;
-  --lum-light-1:  calc(100% - var(--lum-dark-1));
-  --lum-light-2:  calc(100% - var(--lum-dark-2));
 
-  --light-1: hsl(var(--hue-2), 20%, var(--lum-light-2));
-  --light-text: hsl(29, 35%, 86%);
+  --perspective:       100;
+  --parallax:          15;
+  --parallax-scale:    calc(1 + (1 / var(--perspective) * var(--parallax)));
+  --parallax-px:       calc(-1px * var(--parallax));
+  --parallax-sm:       calc(0.50 * var(--parallax));
+  --parallax-sm-scale: calc(1 + (1 / var(--perspective) * var(--parallax-sm)));
+  --parallax-sm-px:    calc(-1px * var(--parallax-sm));
+  --parallax-squeeze-scale: calc(1 + (1 / var(--perspective) * var(--perspective)));
+  --parallax-squeeze-px:    calc(-1px * var(--perspective));
+  --parallax-squeeze-tf:    -1570%; /* fuck knows why */
 
+
+  /* COLORS */
+  --hue-1:             180;
+  --hue-2:               8;
+  --hue-3:             192;
+  --lum-dark-1:         9%;
+  --lum-dark-2:        12%;
+  --lum-dark-3:        17%;
+  --lum-light-1:       calc(100% - var(--lum-dark-1));
+  --lum-light-2:       calc(100% - var(--lum-dark-2));
+  --lum-light-3:       calc(100% - var(--lum-dark-3));
+
+  --light-1:           hsl(var(--hue-2), 20%, var(--lum-light-2));
+  --light-text:        hsl(29, 35%, 86%);
 
   --nav-accent: hsla(var(--hue-3), 40%, 20%, 0.35);
   --neutral-accent: #9ae; /* link? */
@@ -41,7 +62,6 @@
 
   --opacity-regular:  0.45;
   --opacity-faint:    0.25;
-
   --box-regular-color:    hsla(0, 0%, var(--lum-dark-1), var(--opacity-regular));
   --box-faint-color:      hsla(0, 0%, var(--lum-dark-1), var(--opacity-faint));
   --box-regular-color-flip: var(--box-regular-color); /* light mode always dark shadows */
@@ -53,18 +73,15 @@
   --fg-2:       var(--dark-2);
   --lum-fg-1:   var(--lum-dark-1);
   --lum-fg-2:   var(--lum-dark-2);
+  --lum-fg-3:   var(--lum-dark-3);
   --bg-1:       var(--light-1);
   --bg-2:       var(--light-text);
+  --lum-bg-3:   var(--lum-light-3);
   --lum-bg-1:   var(--lum-light-1);
   --lum-bg-2:   var(--lum-light-2);
 
-  --fiddle-multiplier: 3; /* works with line-width and header pixel dispair chrome+safari desktop. 2 would be the assumed correct tho... */
-  --left-marker: calc(100% * ((1.0 - var(--menu-width-fraction)) / 2)
-                + var(--space) - (var(--fiddle-multiplier) * var(--line-width)));
-  --right-marker: calc(100% - var(--left-marker) + var(--line-width)); /* makes sense right side needs one more unit since it has the right border... */
-  --top-to-menu-height: calc(2 * var(--space-top) + 2em - (4 - var(--fiddle-multiplier)) * var(--line-width));
-  --header-expand-time:  0.5s;
 }
+
 /* @media (prefers-color-scheme: dark) { */
  /* { */
   :root { /* OS has requested dark mode */
@@ -72,24 +89,23 @@
     --fg-2:     var(--light-text);
     --lum-fg-1: var(--lum-light-1);
     --lum-fg-2: var(--lum-light-2);
+    --lum-fg-3: var(--lum-light-3);
     --bg-1:     var(--dark-1);
     --bg-2:     var(--dark-2);
     --lum-bg-1: var(--lum-dark-1);
     --lum-bg-2: var(--lum-dark-2);
+    --lum-bg-3: var(--lum-dark-3);
     --box-regular-color-flip: hsla(0, 0%, var(--lum-light-1), var(--opacity-regular));
     --box-faint-color-flip:   hsla(0, 0%, var(--lum-light-1), var(--opacity-faint));
-
-    text-size-adjust: none;
   }
   #logo-top { /* invert then rotate hue to restore blue text */
     filter: invert() hue-rotate(180deg);
   }
 /* } */
-@media screen and (min-width: 800px) {
+@media screen and (min-width: 800px) and (min-height: 800px) {
   :root {
     --space: 2.0rem;
     --space-lg: 3.0rem;
-    /* --media-width-main: 90%; /1* tho actually maybe, just calc from space-sides? *1/ */
   }
 }
 @media screen and (min-width: 1100px) {
@@ -101,42 +117,62 @@
     /* --space-edges: calc(var(--space) + 10vw); */
   }
 }
-@media screen and (max-width: 650px) {
+@media screen and (max-width: 600px),
+       screen and (max-height: 600px) {
   :root {
     --space: 1.0rem;
     --space-lg: 1.5rem;
+    --space-sides: var(--space); /* remember -sides based on the smaller num for mobile (since margins are more precious) */
     --space-edges: 0.8rem; /* perfectly makes room for macos scrollbar */
-    /* --media-width-main: 90%; /1* tho actually maybe, just calc from space-sides? *1/ */
+    --media-width-main: 90%; /* tho actually maybe, just calc from space-sides? */
 
     --scale: 0.9;
     font-size: 0.90rem;
-    /* font-size: calc(100% * var(--scale)); */
-    /* fuck off this goes lunatic */
-    /* will avoid trying more, for now */
-    /* except looks/works shit as balls on iphonex if dont scale down fuuuck */
   }
 }
-@media screen and (max-width: 500px) {
-  :root { /* mobile vars */
-    --space-sides: var(--space); /* remember -sides based on the smaller num for mobile (since margins are more precious) */
-    font-size: 0.85rem;
-    --media-width-main: 90%; /* test */
-    /* --media-width-main: calc(100vw - 2 * var(--space-edges)); /1* would it be context dependent or just use root 100% i guess uh *1/ */
+@media not all and (min-resolution:.001dpcm), /* is safari */
+       (prefers-reduced-motion: reduce) {     /* wants no parallax */
+  :root {
+    --perspective: 1; /* just to be sure */
+    --parallax:    0;
 
-  }
-  body {
-    text-size-adjust: none;
-    /* text-size-adjust: 100%; */
-    -webkit-text-size-adjust: none;
-    /* -webkit-text-size-adjust: 100%; */
-
+    --parallax-squeeze-tf: 100%; /* fuck knows why */
   }
 }
+@media not all and (min-resolution:.001dpcm) { /* is safari */
+  :root {
+    --logo-ratio:        0.40; /* lol, 41.25 actual ratio, 40.6 works on chrome desktop, 40.0 on safari ios... */ /* just use img... */ /* or make logo look like i want in first place - needs higher-res or vector bounce anyways */
+  }
+  .stick-up { /* safari is being way irresponsible drawing img sticky layers.. */
+    /* position: relative; */
+    /* top: initial; */
+  }
+}
+@supports (-webkit-overflow-scrolling: touch) { /* iOS devices */
+  body { /* prevent insane bumping of p font size in landscape and more */
+    text-size-adjust: 100%; -webkit-text-size-adjust: 100%;
+  }
+}
+@media only screen and (-webkit-device-pixel-ratio: 3) {
+  :root { /* *im thinking this is what it's about. 3 vs 2 pixels per pixel */
+    --fiddle-multiplier: 1; /* makes iphone x line up with current formulas/offsets */
+  }
+}
+@media only screen and (min-device-width : 375px) and (max-device-width : 812px) and (-webkit-device-pixel-ratio : 3) {
+  /* iphone x */
+} @media only screen and (min-device-width : 375px) and (max-device-width : 667px) {
+  /* iphone 6-8. i mean not really tho could be loads?? */
+} @media only screen and (min-device-width : 414px) and (max-device-width : 736px) {
+  /* 6-8 plus */
+}
+
 @media screen and (max-width: 400px) {
   :root {
     font-size: 0.80rem;
     --space-sides: calc(0.5 * var(--space)); /* remember -sides based on the smaller num for mobile (since margins are more precious) */
-    --space-edges: calc(0.25 * var(--space));
+    --space-edges: calc(0.5 * var(--space));
+    /* --media-width-main: 100%; */
+    --media-width-main: calc(100vw - 2 * var(--space-edges) - 2 * var(--line-width)); /* would it be context dependent or just use root 100% i guess uh */
   }
   #top-banner {
     padding-top: 0;
@@ -1286,26 +1322,4 @@ h3::first-letter { /* nice looking fancy. why isnt applying within category?? */
   text-align: left;
   /* list-style-type: '_'; */
   /* text-shadow: 1px 1px 2px var(--bg-1); */
-}
-.fas {
-  color: var(--fg-2);
-}
-/* safari just cannot hack the parallaxin and stickin and all */
-/* _::-webkit-full-page-media, _:future, :root .safari_only { */
-@media not all and (min-resolution:.001dpcm) {
-  .parallax-small { transform: translateZ(-0px) scale(1.00);
-  } .parallax-big { transform: translateZ(-0px) scale(1.00);
-  } .parallax-bg  { transform: translateZ(-0px) scale(1.00);
-  } .parallax-fg  { transform: translateZ(0px)  scale(1.00);
-  }
-
-  .stick-up { /* safari is being way irresponsible drawing img sticky layers.. */
-    position: relative;
-    top: initial;
-  }
-}
-@media screen and (max-width: 400px) {
-  .caption-inset  {
-    font-size: 0.65rem;
-  }
 }
